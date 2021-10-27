@@ -12,8 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('FrontEnd.home');
 });
+
+
+Route::get('/menu/categoryProduct', function () {
+    return view('FrontEnd.content.categoryProduct');
+});
+
 
 
 Route::group(['prefix' => 'admin'], function () {

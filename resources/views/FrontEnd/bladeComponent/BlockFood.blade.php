@@ -22,7 +22,7 @@
                     </div><!-- ends-product-img -->
                     <div class="product-txt border border-top-0">
                         <div class="product-txt-upper">
-                            <h4 class="text-truncate"><a href="menu.html#categoryProduct_4">BREAKFAST</a></h4>
+                            <h4 class="text-truncate"><a href="/menu/categoryProduct">BREAKFAST</a></h4>
                                                     </div>
                         <!-- <div class="product-txt-lower">
                             <span class="span-rs"></span>

@@ -10,4 +10,6 @@
         @include('FrontEnd.bladeComponent.DeliveryPromo')
         @include('FrontEnd.Layout.Footer')
         @include('FrontEnd.Layout.FootScript')
+        @include('FrontEnd.bladeComponent.SocialLogin')
+
 </header>

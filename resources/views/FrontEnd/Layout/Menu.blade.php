@@ -6,10 +6,17 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
+                <div class="nav-login2 order-lg-2" style="padding-right: 3em;">
+                  <ul>
+                    <!-- <li class="li-cart"><a href="#"><i class="fas fa-cart-plus"></i><span>(0)</span></a></li> -->
+                    <li><a href="#" data-bs-toggle="modal" data-bs-target="#modalLogin">My Cart</a></li>
+                      <!-- <li><a href="#" data-bs-toggle="modal" data-bs-target="#registerModal">Register</a></li> -->
+                                                            </ul>
+                </div><!-- ends nav-login -->
                 <div class="nav-login2 order-lg-2">
                   <ul>
                     <!-- <li class="li-cart"><a href="#"><i class="fas fa-cart-plus"></i><span>(0)</span></a></li> -->
-                                                                                      <li><a href="#" data-bs-toggle="modal" data-bs-target="#modalLogin">Login</a></li>
+                    <li><a href="#" data-bs-toggle="modal" data-bs-target="#modalLogin">Login</a></li>
                       <!-- <li><a href="#" data-bs-toggle="modal" data-bs-target="#registerModal">Register</a></li> -->
                                                             </ul>
                 </div><!-- ends nav-login -->
