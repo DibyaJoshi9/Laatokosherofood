@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('FrontEnd.home');
-});
+Route::get('/','FrontEnd\HomeController@index');
 
 
 Route::get('/menu/categoryProduct', function () {
