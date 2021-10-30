@@ -16,9 +16,10 @@ use App\Http\Daos\PagesDao;
 Route::get('/','FrontEnd\HomeController@index');
 
 
-Route::get('/menu/categoryProduct', function () {
-    return view('frontend.content.categoryProduct');
-});
+// Route::get('/menu/categoryProduct', function () {
+//     return view('frontend.content.categoryProduct');
+// });
+Route::get('/menu/categoryProduct','FrontEnd\ItemController@GetCategoriesItems');
 
 
 
