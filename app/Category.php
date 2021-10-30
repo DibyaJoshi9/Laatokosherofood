@@ -46,11 +46,15 @@ class Category extends \TCG\Voyager\Models\Category
     public function Items():HasMany{
         return $this->hasMany(Item::class);
     }
-    public function ItemsRecursive()
+     public function ItemsRecursive()
     {
         return $this->ChildCategories()->with('Items');
         // which is equivalent to:
-        // return $this->hasMany('Survey', 'parent')->with('childrenRecursive);
+       // return $this->hasMany('Survey', 'parent')->with('childrenRecursive);
+    }
+
+    public function subCategories(){
+        return $this->hasMany(SubCategory::class);
     }
 
 }

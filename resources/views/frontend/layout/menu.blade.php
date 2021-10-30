@@ -25,12 +25,16 @@
                   @foreach($categories as $category)
                   <li class="dropdown-submenu">
                   <a class="a-drop-out dropdown-item p-category collapse-menu" tabindex="-1" href="menu.html#categoryProduct_1">
-                    {{$category->name}} @if(count($category->childrenRecursive) >0)<i class="fas fa-chevron-right"></i>@endif
+                    {{$category->name}} @if(count($category->subCategories) >0)<i class="fas fa-chevron-right"></i>@endif
                   </a>
-                  @if(count($category->childrenRecursive) > 0)
+                  @if(count($category->subCategories) > 0)
                   <ul class="dropdown-menu">
-                    @foreach($category->childrenRecursive as $children)
-                      <li><a class="dropdown-item c-category collapse-menu" tabindex="-1" href="menu.html#categoryProduct_4">{{$children->name}}</a></li>
+                    @foreach($category->subCategories as $children)
+                      <li>
+                        <a class="dropdown-item c-category collapse-menu" tabindex="-1" href="menu.html#categoryProduct_4">
+                          {{$children->name}}
+                        </a>
+                      </li>
                     @endforeach
                   </ul>
                   @endif
