@@ -11,11 +11,13 @@
 |
 */
 
+use App\Http\Daos\PagesDao;
+
 Route::get('/','FrontEnd\HomeController@index');
 
 
 Route::get('/menu/categoryProduct', function () {
-    return view('FrontEnd.content.categoryProduct');
+    return view('frontend.content.categoryProduct');
 });
 
 
@@ -23,3 +25,11 @@ Route::get('/menu/categoryProduct', function () {
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+
+//for pages
+$pages = PagesDao::getActivePages();
+foreach($pages as $page){
+	Route::get($page->slug,['as'=>$page->slug,'uses'=>'FrontEnd\HomeController@getPage']);
+}
+
+//end

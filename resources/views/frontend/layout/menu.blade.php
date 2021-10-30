@@ -16,7 +16,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto my-2 my-lg-0">
               <li class="nav-item">
-                <a class="nav-link  active " aria-current="page" href="index.html">Home</a>
+                <a class="nav-link  active " aria-current="page" href="{{url('/')}}">Home</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link " href="menu.html">Menu<i class="fas fa-chevron-down"></i></a>
@@ -44,6 +44,18 @@
               <li class="nav-item">
                 <a class="nav-link " href="contact-us.html" tabindex="-1" aria-disabled="true">Contact Us</a>
               </li>
+              
+              {{-- @foreach($items as $menu_item)
+              {{$menu_item->title}}
+              @php
+              $submenu = $menu_item->children;
+  
+          @endphp
+           <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{makeUrl($menu_item->url)}}">{{$menu_item->title}}
+              </li>
+              @endforeach --}}
+
             </ul>
           </div>
         </div>
