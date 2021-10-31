@@ -1,6 +1,6 @@
-<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="csrf_token" content="{{ csrf_token() }}" />
     <title>Laatokoshero</title>
 
     <link rel="apple-touch-icon" sizes="57x57" href="{{ URL::asset('assets/favicon/apple-icon-57x57.png') }}">
@@ -20,7 +20,7 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="{{ URL::asset('/assets/favicon/ms-icon-144x144.png') }}">
     <meta name="theme-color" content="#ffffff">
-    <meta name="csrf-token" content="vQLPJJxpHt7ksS7vfSIhELb0zv6mkpUufY4dJCux">
+
 
 
     <link href="{{ URL::asset('assets/dist/css/bootstrap.min.css') }}" rel="stylesheet">

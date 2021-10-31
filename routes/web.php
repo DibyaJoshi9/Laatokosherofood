@@ -27,6 +27,21 @@ Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
+// customer auth
+Route::post('customer/login', 'Customer\LoginController@login')->name('login');
+Route::post('customer/register','Customer\RegisterController@register')->name('customer.register');
+
+Route::group(['middleware' => ['auth.customer']], function () {
+
+    // customer route here
+});
+// password reset
+Route::get('password/reset', 'Customer\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('password/email', 'Customer\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::post('password/reset', 'Customer\ResetPasswordController@reset')->name('password.update');
+Route::get('password/reset/{token}', 'Customer\ResetPasswordController@showResetForm')->name('password.reset');
+//end password reset
+
 //for pages
 $pages = PagesDao::getActivePages();
 foreach($pages as $page){

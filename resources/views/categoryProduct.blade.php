@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
-        @include('FrontEnd.Layout.HeadScript')
+        @include('frontend.layout.headscript')
     </head>
     <body>
-        @include('FrontEnd.Layout.Header')
+        @include('frontend.layout.header')
     </body>
 </html>

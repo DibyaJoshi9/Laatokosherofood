@@ -3,10 +3,7 @@
 
 namespace App\Providers;
 
-
-
-
-
+use App\Http\ViewComposers\Front\LogoPageViewComposer;
 use App\Http\ViewComposers\Front\MenuPageViewComposer;
 use Carbon\Laravel\ServiceProvider;
 use Illuminate\Support\Facades\View;
@@ -18,6 +15,7 @@ class ComposerServiceProvider extends ServiceProvider
        
 
         View::composer('frontend/layout/menu',MenuPageViewComposer::class);
+        View::composer('frontend/layout/logo',LogoPageViewComposer::class);
       
     }
 }
