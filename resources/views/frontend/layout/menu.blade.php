@@ -11,20 +11,30 @@
           </button>
           <div class="nav-login2 order-lg-2">
             <ul>
-              {{-- @guest --}}
-              <!-- <li class="li-cart"><a href="#"><i class="fas fa-cart-plus"></i><span>(0)</span></a></li> -->
+             
+							@auth('customer')
+              <li>{{ auth()->guard('customer')->user()->first_name }} {{auth()->guard('customer')->user()->last_name}}
+                <a  onclick="event.preventDefault();
+              document.getElementById('logout-form').submit();" href="#">
+              <i class="fas fa-sign-out-alt"></i> Log out
+            </a>
+              </li>
+             
+            
+            <form id="logout-form" action="{{route('logout')}}" method="POST"
+							style="display: none;">
+							{{ csrf_field() }} 
+							</form>
+              @else
               <li><a href="#" data-bs-toggle="modal" data-bs-target="#modalLogin">Login</a></li>
               <li><a href="#" data-bs-toggle="modal" data-bs-target="#registerModal">Register</a></li> 
-              {{-- @endguest --}}
-              @auth
-              {{-- <li>{{auth('customer')->user()->first_name }} {{auth('customer')->user()->last_name}}</li> --}}
               @endauth
             </ul>
           </div><!-- ends nav-login -->
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto my-2 my-lg-0">
               <li class="nav-item">
-                <a class="nav-link  active " aria-current="page" href="{{url('/')}}">Home</a>
+                <a class="nav-link  active " aria-current="page" href="{{route('index')}}">Home</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link " href="menu.html">Menu<i class="fas fa-chevron-down"></i></a>
@@ -210,7 +220,7 @@
                 
                 <form  method="post" id="popupLoginForm" returnurl="returnUrl" role="form">
                   {{ csrf_field() }}
-                  <p class="text-success mb-0" id="quotemsg1"></p>
+                  <p class="text-success mb-0" id="email"></p>
                   <div class="mb-3">
                     <label for="popupemail" class="form-label">Email address</label>
                     <input type="email" name="email" class="form-control " id="popupemail" placeholder="yours@email.com" required>
@@ -301,6 +311,7 @@
 
       e.preventDefault();
         var that = this;
+        $('#popupLoginForm').find('button[type=submit]').attr('disabled','disabled')
         $.ajax({
           type: "POST",
           url: "{{route('login')}}",
@@ -320,10 +331,13 @@
 
                   if ($.isArray(v)) {
                       $(that).find('#' + k).append('<p class="auth-error">' + v[0] + '</p>');
+                  }else if($.isArray(v.email)){
+                    $(that).find('#email').append('<p class="auth-error">' + v.email[0] + '</p>');
                   } else {
                       $(that).find('#' + k).append('<p class="auth-error">' + v + '</p>');
                   }
               })
+              $('#popupLoginForm').find('button[type=submit]').removeAttr('disabled')
           }
       });
       

@@ -68,6 +68,9 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Customer
      */
+ 
+
+
     protected function create(array $data)
     {
         // return $data;
@@ -81,7 +84,7 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
             'status' => '1',
         ]);
-     
+      
         return $user;
     }
     protected function guard()

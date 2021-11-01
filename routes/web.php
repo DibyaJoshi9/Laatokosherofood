@@ -13,7 +13,7 @@
 
 use App\Http\Daos\PagesDao;
 
-Route::get('/','FrontEnd\HomeController@index');
+Route::get('/','FrontEnd\HomeController@index')->name('index');
 
 
 // Route::get('/menu/categoryProduct', function () {
@@ -30,6 +30,7 @@ Route::group(['prefix' => 'admin'], function () {
 // customer auth
 Route::post('customer/login', 'Customer\LoginController@login')->name('login');
 Route::post('customer/register','Customer\RegisterController@register')->name('customer.register');
+Route::post('/logout','Customer\LoginController@logout')->name('logout');
 
 Route::group(['middleware' => ['auth.customer']], function () {
 

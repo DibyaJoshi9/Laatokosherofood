@@ -28,20 +28,7 @@ class LoginController extends Controller
     }
 
 
-    // public function username()
-    // {
-    //     $login = request()->input('email');
-
-    //     if(is_numeric($login)){
-    //         $field = 'phone_number';
-    //     } elseif (filter_var($login, FILTER_VALIDATE_EMAIL)) {
-    //         $field = 'email';
-    //     }
-
-    //     request()->merge([$field => $login]);
-
-    //     return $field;
-    // }
+ 
 
     public function username()
     {
@@ -59,15 +46,7 @@ class LoginController extends Controller
        * @param  \Illuminate\Http\Request  $request
        * @return array
        */
-      // protected function credentials(Request $request)
-      // {
-      //   if(is_numeric($request->get('email'))){
-      //     return ['phone_number'=>$request->get('email'),'password'=>$request->get('password')];
-      //   }
-      //   elseif (filter_var($request->get('email'), FILTER_VALIDATE_EMAIL)) {
-      //     return ['email' => $request->get('email'), 'password'=>$request->get('password')];
-      //   }
-      // }
+     
 
 
       protected function attemptLogin(Request $request)
@@ -80,10 +59,10 @@ class LoginController extends Controller
   
       protected function credentials(Request $request)
       {
-          $admin = Customer::where('email', $request->email)->first();
+          $user = Customer::where('email', $request->email)->first();
   
-          if ($admin) {
-              if ($admin->active == 0) {
+          if ($user) {
+              if ($user->status == 0) {
                   return ['email' => 'inactive', 'password' => 'Your account has not been active, please contact Admin'];
               } else {
                   return ['email' => $request->email, 'password' => $request->password];
@@ -91,6 +70,7 @@ class LoginController extends Controller
           }
           return $request->only($this->username(), 'password');
       }
+
 
     protected function authenticated(Request $request, $user)
     {
