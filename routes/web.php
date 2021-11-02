@@ -32,6 +32,9 @@ Route::post('customer/login', 'Customer\LoginController@login')->name('login');
 Route::post('customer/register','Customer\RegisterController@register')->name('customer.register');
 Route::post('/logout','Customer\LoginController@logout')->name('logout');
 
+Route::get('login/{provider}', 'Customer\SocialController@redirectToProvider')->name('social.login');
+Route::get('login/{provider}/callback', 'Customer\SocialController@handleProviderCallback');
+
 Route::group(['middleware' => ['auth.customer']], function () {
 
     // customer route here
