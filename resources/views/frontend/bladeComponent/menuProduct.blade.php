@@ -225,8 +225,8 @@
                     <div class="col-sm-12">
                         <div class="lg-form px-3">
                             <div class="modal-header">
-                                <input type="hidden" value="" id="modelItemId">
-                                <input type="hidden" value="" id="modelCartItemId">
+                                <input type="hidden" id="modelItemId">
+                                <input type="hidden" id="modelCartItemId">
                                 <h5 class="modal-title" id="modelItemName">Item Name</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
@@ -259,9 +259,9 @@
                             <div class="food-footer pb-3">
                                 <div class="fd-left">
                                     <div class="food-num">
-                                        <button type="button" onclick="addminus('-')" class="btn btn-plain btn-plm" id="qtyMinus"><i class="fas fa-minus"></i></button>
+                                        <button type="button" class="btn btn-plain btn-plm" id="qtyMinus"><i class="fas fa-minus"></i></button>
                                         <input type="number" value="1" id="qtyVal" min="1">
-                                        <button type="button" onclick="addminus('+')" class="btn btn-plain btn-plm" id="qtyPlus"><i class="fas fa-plus"></i></button>
+                                        <button type="button" class="btn btn-plain btn-plm" id="qtyPlus"><i class="fas fa-plus"></i></button>
                                     </div>
                                     <div class="food-sep-total" id="modelTotalCost">RS. </div>
                                 </div>
@@ -286,7 +286,7 @@
                                 <div class="selected-sec">
                                     <h4>Your Selected Items are:</h4>
                                     <ul class="cartListUL">
-                                        <!-- <li><a href="#" class="btn btn-custom w-100">Add More Items<i class="fas fa-plus-circle ms-2" aria-hidden="true"></i></a></li> -->
+                                       <li><a href="#" class="btn btn-custom w-100">Add More Items<i class="fas fa-plus-circle ms-2" aria-hidden="true"></i></a></li>
                                     </ul>
                                 </div><!-- ends selected-sec -->
                                 <div class="sub-total">
@@ -454,18 +454,32 @@ function animateJump(hrefVal, mView)
 
 </script>
 <script>
-    function onCartAdd(d){
-        $('#foodNameModal').modal('show');
-        console.log(d);
-        $('#modelItemPrice').text(d.price);
-        $('#modelItemName').text(d.name);
-        $("#modelItemImage").attr("src","{{ URL::asset('storage')}}"+"/"+d.image);
-        $('#ModlDescription').html(d.description);
-
-    };
-    function addminus(dd){
-        if(dd == '+'){
-            
+     function onCartAdd(d){
+            $('#foodNameModal').modal('show');
+            console.log(d);
+            $('#modelItemPrice').text(d.price);
+            $('#modelItemName').text(d.name);
+            $('#modelItemId').val(d.id);
+            $("#modelItemImage").attr("src","{{ URL::asset('storage')}}"+"/"+d.image);
+            $('#ModlDescription').html(d.description);
+            $("textarea#modelItemInstruction").val('');
+            $("input#qtyVal").val(1);
+            $('#modelTotalCost').text('Rs.');
+        };
+        function addminus(dd){
+            if(dd == '+'){
+                
+            }
         }
+    </script>
+<script>
+    var itemcart = function(){
+       var self= this;
+       self.cartItem = ko.observableArray([]);
     }
+    $( document ).ready(function() {
+        ko.applyBindings(new itemcart);
+        
+});
+
 </script>
