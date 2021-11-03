@@ -1,10 +1,22 @@
-<div class="d-none d-md-block" style="padding: 0px 20px; margin-bottom: 0px; border-bottom: 1px solid #FFC108; background-color: #FFC108; color: rgb(0, 0, 0);">
+<div class="d-none d-md-block" 
+style="padding: 0px 20px; margin-bottom: 0px; border-bottom: 1px solid #FFC108; background-color: #FFC108; color: rgb(0, 0, 0);">
         <div class="row">
             <div class="container px-3 my-2">
                 <div class="pull-left" style="text-align: center;">
-                    <span style="color: #d60103!important"><i class="fa fa-lg fa-phone fa-rotate-90" aria-hidden="true"></i>&nbsp;Kathmandu:</span><a class="text-black" href="tel:015907944">&nbsp;01-5907944/45</a>,
-                    <a class="text-black mr-3" href="tel:9801877977">9801877977</a>
-                    <span style="color: #d60103!important"><i class="fa fa-lg fa-phone fa-rotate-90"></i>&nbsp;Pokhara:</span><a class="text-black" href="tel:061-590555">061-590555</a>, <a class="text-black mr-2" href="tel:015907944">&nbsp;9801862888</a>
+                  @foreach ($branch_name as $key => $b)
+
+                    <span style="color: #d60103!important">
+                      <i class="fa fa-lg fa-phone fa-rotate-90" aria-hidden="true"></i>&nbsp;{{$b->name}}:
+                    </span>
+                    <a class="text-black" href="tel:015907944">&nbsp;{{$b->contact_number}}</a>
+                    @if(!empty($b->phone_number))
+                        
+                    
+
+                    ,
+                    <a class="text-black mr-3" href="tel:9801877977">{{$b->phone_number}}</a>
+                   @endif
+                     @endforeach
                 </div>
                 <!-- <div class="pull-right">
                     <a style="background-color: #FF300A; border-radius: 99px" class="text-white mr-2 py-1 px-3" href="https://tatomitho-app.app.link">Get App</a>
@@ -19,12 +31,13 @@
             
                 <div class="pull-left" style="text-align: center;">
                 <span style="color: #FFC108!important;font-weight: bold;font-size: 20px;">&nbsp;SERVICE AREA : </span>
+                  @foreach ($branch_name as $key => $b)
+                  <span style="color: #FFFFFF!important;font-weight: bold;padding-left: 1em;font-size: 20px;">
+                    @if($key > 0 && $key < count($branch_name))|@endif<a href="#" style="color: white;">&nbsp;{{$b->name}}</a>
+                  </span>
 
-                    <span style="color: #FFFFFF!important;font-weight: bold;padding-left: 1em;font-size: 20px;"><a href="#" style="color: white;">&nbsp;Kathmandu</a></span>
-                    <span style="color: #FFFFFF!important;font-weight: bold;padding-left: 1em;font-size: 20px;">&nbsp;|</span>
-
-                    <span style="color: #FFFFFF!important;font-weight: bold;padding-left: 1em;font-size: 20px;"><a href="#" style="color: white;">&nbsp;Pokhara</a></span>
-                </div>
+                  @endforeach
+                     </div>
                 <!-- <div class="pull-right">
                     <a style="background-color: #FF300A; border-radius: 99px" class="text-white mr-2 py-1 px-3" href="https://tatomitho-app.app.link">Get App</a>
                 </div> -->
