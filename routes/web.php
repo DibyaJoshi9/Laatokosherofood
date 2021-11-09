@@ -22,7 +22,7 @@ Route::get('/', 'FrontEnd\HomeController@index')->name('index');
 Route::get('/menu/categoryProduct', 'FrontEnd\ItemController@GetCategoriesItems');
 
 
-
+Route::post('/cart-item', 'FrontEnd\ItemController@AddCartItems');
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
