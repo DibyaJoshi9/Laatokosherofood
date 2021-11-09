@@ -1,4 +1,4 @@
-{{-- @extends('frontend.layout.headScript') --}}
+@extends('frontend.layout.headScript')
 
 
 <div class="headnav-outer" id="myHeader">
@@ -100,7 +100,7 @@
             <div class="modal-body">
               <div class="border-bottom pb-4 mb-3">
               <form  method="post" id="registerModalForm" returnurl="returnUrl" role="form" autocomplete="on">
-                {{ csrf_field() }}
+                @csrf
                 <p class="text-success mb-0" id="quotemsg15"></p>
 
                   <div class="row">
@@ -219,7 +219,7 @@
               <div class="border-bottom pb-4 mb-3">
                 
                 <form  method="post" id="popupLoginForm" returnurl="returnUrl" role="form">
-                  {{ csrf_field() }}
+                  @csrf
                   <p class="text-success mb-0" id="email"></p>
                   <div class="mb-3">
                     <label for="popupemail" class="form-label">Email address</label>
