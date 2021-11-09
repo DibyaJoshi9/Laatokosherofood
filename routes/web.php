@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Controllers\Customer\SocialController;
 use App\Http\Daos\PagesDao;
 
 Route::get('/', 'FrontEnd\HomeController@index')->name('index');
@@ -32,11 +33,13 @@ Route::post('customer/login', 'Customer\LoginController@login')->name('login');
 Route::post('customer/register', 'Customer\RegisterController@register')->name('customer.register');
 Route::post('/logout', 'Customer\LoginController@logout')->name('logout');
 
-Route::get('login/{provider}', 'Customer\SocialController@redirectToProvider')->name('social.login');
-Route::get('login/{provider}/callback', 'Customer\SocialController@handleProviderCallback');
+
+Route::get('auth/facebook', [SocialController::class, 'redirectToFacebook']);
+Route::get('auth/facebook/callback', [SocialController::class, 'facebookSignin']);
 
 
-
+Route::get('auth/google', 'Customer\GoogleController@redirectToGoogle');
+Route::get('auth/google/callback', 'Customer\GoogleController@handleGoogleCallback');
 
 Route::group(array('middleware' => ['customer']), function () {
     Route::post('/foo', function () {

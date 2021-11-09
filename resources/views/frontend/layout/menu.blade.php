@@ -241,8 +241,8 @@
               <div class="login-social">
                 <h5 class="text-center">Or Login Using</h5>
                 <div class="lg-fb-g flex-wrap">
-                  <a href="{{ route('social.login', 'facebook') }}" class="btn btn-facebook mb-2 mb-md-0"><i class="fab fa-facebook-f"></i>Facebook</a>
-                  <a href="https://accounts.google.com/o/oauth2/auth?client_id=402869115988-oq54pb9gbgvf3ub642fcv5euce5860gi.apps.googleusercontent.com&amp;redirect_uri=https%3A%2F%2Flaatokoshero.com%2Fauth%2Fgoogle%2Fcallback&amp;scope=openid+profile+email&amp;response_type=code&amp;state=3I2lZCvJNzPYgJQ2dqHdj3uPXAmoeH9kG5BXxc8i" class="btn btn-google mb-2 mb-md-0"><i class="fab fa-google"></i>Google</a>
+                  <a href="{{ url('auth/facebook') }}" class="btn btn-facebook mb-2 mb-md-0"><i class="fab fa-facebook-f"></i>Facebook</a>
+                  <a href="{{url('auth/google')}}" class="btn btn-google mb-2 mb-md-0"><i class="fab fa-google"></i>Google</a>
                 </div>
               </div>
               <div class="lg-footer">
