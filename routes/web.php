@@ -32,10 +32,15 @@ Route::post('customer/login', 'Customer\LoginController@login')->name('login');
 Route::post('customer/register','Customer\RegisterController@register')->name('customer.register');
 Route::post('/logout','Customer\LoginController@logout')->name('logout');
 
-Route::group(['middleware' => ['auth.customer']], function () {
 
-    // customer route here
-});
+
+Route::group(array('middleware' => ['customer']), function () {
+    Route::post('/foo', function () {
+       echo 1;
+       return;
+    });
+  });
+  
 // password reset
 Route::get('password/reset', 'Customer\ForgotPasswordController@showLinkRequestForm')->name('password.request');
 Route::post('password/email', 'Customer\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
