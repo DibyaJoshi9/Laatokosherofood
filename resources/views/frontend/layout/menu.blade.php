@@ -206,7 +206,7 @@
       <div class="row g-0">
         <div class="col-sm-4">
           <div class="lg-img">
-            <img src="assets/images/home-banner-1.jpg" alt="" class="img-fluid">
+            <img src="{{ asset('assets/images/home-banner-1.jpg') }}" alt="" class="img-fluid">
           </div>
         </div>
         <div class="col-sm-8">
@@ -247,7 +247,7 @@
               </div>
               <div class="lg-footer">
                 <h5>Don't have an account? <a href="#" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#registerModal">Sign Up</a></h5>
-                <h6><a href="forgot-password.html">Forgot Password?</a></h6>
+                <h6><a href="{{ route('password.request') }}">Forgot Password?</a></h6>
               </div>
             </div>
           </div>

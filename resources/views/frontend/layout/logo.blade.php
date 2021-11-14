@@ -49,16 +49,16 @@ style="padding: 0px 20px; margin-bottom: 0px; border-bottom: 1px solid #FFC108; 
             <div class="header-upp-block">
               <div class="header-logo">
                 <a href="/"><img src="{{ URL::asset('assets/images/logo.png') }}" alt="" class="img-fluid"></a>
-              </div><!-- ends header-logo -->
+              </div>
               <div class="header-right">
-                <div class="header-address">
+                {{-- <div class="header-address">
                   <div class="item-header-address">
                     <i class="fas fa-map-marker-alt"></i>
                     <address class="head-addrs">
                       <a href="#">Dhobighat<br/>
                       Lalitpur, Nepal</a>
                     </address>
-                  </div><!-- ends item-header-address -->
+                  </div>
                   <div class="item-header-address">
                     <i class="fas fa-phone-alt"></i>
                     <address class="head-addrs">
@@ -66,8 +66,8 @@ style="padding: 0px 20px; margin-bottom: 0px; border-bottom: 1px solid #FFC108; 
                       <br/>
                       <span>24 hrs Service</span>
                     </address>
-                  </div><!-- ends item-header-address -->
-                </div><!-- ends header-address -->
+                  </div>
+                </div> --}}
                 <div class="header-social">
                   <a href="https://www.facebook.com/Laatokoshero" target="_blank"><i class="fab fa-facebook-f"></i></a>
                   <a href="#"><i class="fab fa-twitter"></i></a>
