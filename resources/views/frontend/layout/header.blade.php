@@ -1,5 +1,5 @@
 <header class="header">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     @include('frontend.layout.logo')
     @include('frontend.layout.menu')
     <section class="home-banner-sec" style="background: {{ URL::asset('assets/images/home-banner-1.jpg') }}">

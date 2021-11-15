@@ -11,9 +11,10 @@
 |
 */
 
+use App\Http\Controllers\Customer\SocialController;
 use App\Http\Daos\PagesDao;
 
-Route::get('/','FrontEnd\HomeController@index')->name('index');
+Route::get('/', 'FrontEnd\HomeController@index')->name('index');
 
 
 // Route::get('/menu/categoryProduct', function () {
@@ -21,6 +22,7 @@ Route::get('/','FrontEnd\HomeController@index')->name('index');
 // });
 Route::get('/menu/categoryProduct','FrontEnd\ItemController@GetCategoriesItems');
 Route::get('/menu/categoryProductjs','FrontEnd\ItemController@GetCategoriesItemsFromJs');
+Route::get('/menu/categoryProduct', 'FrontEnd\ItemController@GetCategoriesItems');
 
 
 Route::post('/cart-item', 'FrontEnd\ItemController@AddCartItems');
@@ -30,16 +32,24 @@ Route::group(['prefix' => 'admin'], function () {
 
 // customer auth
 Route::post('customer/login', 'Customer\LoginController@login')->name('login');
-Route::post('customer/register','Customer\RegisterController@register')->name('customer.register');
-Route::post('/logout','Customer\LoginController@logout')->name('logout');
+Route::post('customer/register', 'Customer\RegisterController@register')->name('customer.register');
+Route::post('/logout', 'Customer\LoginController@logout')->name('logout');
 
-Route::get('login/{provider}', 'Customer\SocialController@redirectToProvider')->name('social.login');
-Route::get('login/{provider}/callback', 'Customer\SocialController@handleProviderCallback');
 
-Route::group(['middleware' => ['auth.customer']], function () {
+Route::get('auth/facebook', [SocialController::class, 'redirectToFacebook']);
+Route::get('auth/facebook/callback', [SocialController::class, 'facebookSignin']);
 
-    // customer route here
+
+Route::get('auth/google', 'Customer\GoogleController@redirectToGoogle');
+Route::get('auth/google/callback', 'Customer\GoogleController@handleGoogleCallback');
+
+Route::group(array('middleware' => ['customer']), function () {
+    Route::post('/foo', function () {
+        echo 1;
+        return;
+    });
 });
+
 // password reset
 Route::get('password/reset', 'Customer\ForgotPasswordController@showLinkRequestForm')->name('password.request');
 Route::post('password/email', 'Customer\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
@@ -49,8 +59,8 @@ Route::get('password/reset/{token}', 'Customer\ResetPasswordController@showReset
 
 //for pages
 $pages = PagesDao::getActivePages();
-foreach($pages as $page){
-	Route::get($page->slug,['as'=>$page->slug,'uses'=>'FrontEnd\HomeController@getPage']);
+foreach ($pages as $page) {
+    Route::get($page->slug, ['as' => $page->slug, 'uses' => 'FrontEnd\HomeController@getPage']);
 }
 
 //end

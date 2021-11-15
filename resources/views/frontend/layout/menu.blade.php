@@ -1,4 +1,4 @@
-{{-- @extends('frontend.layout.headScript') --}}
+@extends('frontend.layout.headScript')
 
 
 <div class="headnav-outer" id="myHeader">
@@ -100,7 +100,7 @@
             <div class="modal-body">
               <div class="border-bottom pb-4 mb-3">
               <form  method="post" id="registerModalForm" returnurl="returnUrl" role="form" autocomplete="on">
-                {{ csrf_field() }}
+                @csrf
                 <p class="text-success mb-0" id="quotemsg15"></p>
 
                   <div class="row">
@@ -206,7 +206,7 @@
       <div class="row g-0">
         <div class="col-sm-4">
           <div class="lg-img">
-            <img src="assets/images/home-banner-1.jpg" alt="" class="img-fluid">
+            <img src="{{ asset('assets/images/home-banner-1.jpg') }}" alt="" class="img-fluid">
           </div>
         </div>
         <div class="col-sm-8">
@@ -219,7 +219,7 @@
               <div class="border-bottom pb-4 mb-3">
                 
                 <form  method="post" id="popupLoginForm" returnurl="returnUrl" role="form">
-                  {{ csrf_field() }}
+                  @csrf
                   <p class="text-success mb-0" id="email"></p>
                   <div class="mb-3">
                     <label for="popupemail" class="form-label">Email address</label>
@@ -241,13 +241,13 @@
               <div class="login-social">
                 <h5 class="text-center">Or Login Using</h5>
                 <div class="lg-fb-g flex-wrap">
-                  <a href="{{ route('social.login', 'facebook') }}" class="btn btn-facebook mb-2 mb-md-0"><i class="fab fa-facebook-f"></i>Facebook</a>
-                  <a href="https://accounts.google.com/o/oauth2/auth?client_id=402869115988-oq54pb9gbgvf3ub642fcv5euce5860gi.apps.googleusercontent.com&amp;redirect_uri=https%3A%2F%2Flaatokoshero.com%2Fauth%2Fgoogle%2Fcallback&amp;scope=openid+profile+email&amp;response_type=code&amp;state=3I2lZCvJNzPYgJQ2dqHdj3uPXAmoeH9kG5BXxc8i" class="btn btn-google mb-2 mb-md-0"><i class="fab fa-google"></i>Google</a>
+                  <a href="{{ url('auth/facebook') }}" class="btn btn-facebook mb-2 mb-md-0"><i class="fab fa-facebook-f"></i>Facebook</a>
+                  <a href="{{url('auth/google')}}" class="btn btn-google mb-2 mb-md-0"><i class="fab fa-google"></i>Google</a>
                 </div>
               </div>
               <div class="lg-footer">
                 <h5>Don't have an account? <a href="#" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#registerModal">Sign Up</a></h5>
-                <h6><a href="forgot-password.html">Forgot Password?</a></h6>
+                <h6><a href="{{ route('password.request') }}">Forgot Password?</a></h6>
               </div>
             </div>
           </div>
