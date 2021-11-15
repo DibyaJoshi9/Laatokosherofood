@@ -226,7 +226,8 @@
                         <div class="lg-form px-3">
                             <div class="modal-header">
                                 <input type="hidden" id="modelItemId">
-                                <input type="hidden" id="modelCartItemId">
+                                <input type="hidden" id="modelCartItemId" value="">
+                                <input type="hidden" id="totalAmount" value="">
                                 <h5 class="modal-title" id="modelItemName">Item Name</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
@@ -277,8 +278,7 @@
             </div>
         </div>
     </div>
-
-                <div class="col-lg-3 d-none d-lg-block">
+         <div class="col-lg-3 d-none d-lg-block">
                     <div class="cart-sec sticky-top-custom">
                         <h4 class="block-title">My Cart</h4>
                         <div class="my-cart-block">
@@ -286,7 +286,6 @@
                                 <div class="selected-sec">
                                     <h4>Your Selected Items are:</h4>
                                     <ul class="cartListUL">
-                                       <li><a href="#" class="btn btn-custom w-100">Add More Items<i class="fas fa-plus-circle ms-2" aria-hidden="true"></i></a></li>
                                     </ul>
                                 </div><!-- ends selected-sec -->
                                 <div class="sub-total">
@@ -464,20 +463,79 @@ function animateJump(hrefVal, mView)
             $('#ModlDescription').html(d.description);
             $("textarea#modelItemInstruction").val('');
             $("input#qtyVal").val(1);
-            $('#modelTotalCost').text('Rs.');
+            $('#modelTotalCost').text('Rs.'+d.price);
         };
         function addminus(dd){
             if(dd == '+'){
                 
             }
         }
+        function addCartItem(){
+           
+            var val = {
+                ProductName: $('#modelItemName').html(),
+                ActualRate: $('#modelTotalCost').text().replace('Rs.', ''),
+                ProductId: $('#modelItemId').val(),
+                Quantity: $("#qtyVal").val(),
+                CartItemId: $('#modelItemId').val(),
+                ImageUrl: $('#modelItemImage ').prop('src'),
+                sNote : $('#modelItemInstruction').val()
+            };
+            var cart = JSON.parse(sessionStorage.getItem("cart") || "[]");
+            cart.push(val);
+
+            sessionStorage.setItem("cart", JSON.stringify(cart));
+            cartReady();
+            $('#foodNameModal').modal('hide');
+           }
+        function cartReady(){
+            var c = JSON.parse(sessionStorage.getItem("cart") || "[]");
+            $('.cartListUL').html('');
+            $('.subTotalId').text(0);
+            for(var i =0;i< c.length;i++){
+                var val = c[i];
+            var liData = '<li>' +
+            '<div class="slt-upper">' +
+            '<h5>' + val.ProductName + '<span class="s-note">' + val.sNote + '</span></h5>' +
+            '<p>Rs. ' + val.ActualRate + '</p>' +
+            '</div>' +
+            '<div class="slt-lower">' +
+            '<div class="slt-lower">' +
+            '<span> Quantity :'+ val.Quantity+ '</span>' +
+            '<button type="button" class="btn btn-plain btn-del checkout-status" onclick="javascript:deleteCartItem2(' + val.ProductId + ')"><i class="far fa-trash-alt"></i></button>' +
+            '</div>' +
+            '</div>' +
+            '</li>';
+            $('.cartListUL').append(liData);
+            $('.cartPanelBox').show();
+            $('.cartEmptyBox').hide();
+           
+            $('.subTotalId').text(parseInt($('.subTotalId').text()) + parseInt(val.ActualRate));
+            $('#totalAmount').val(val.addCartItem);
+            $('.grandTotalId').html('<strong>Rs. ' + $('.subTotalId').text() + '</strong>');
+          
+          
+            }
+            sessionStorage.setItem("total", $('.subTotalId').text());
+            $('.subTotalId').text(parseInt(sessionStorage.getItem("total")));
+            $('#totalAmount').val(parseInt(sessionStorage.getItem("total")));
+            $('.grandTotalId').html('<strong>Rs. ' + sessionStorage.getItem("total") + '</strong>');
+          
+            
+           }
+           cartReady();
+    function deleteCartItem2(a){
+       
+    }
     </script>
 <script>
     var itemcart = function(){
        var self= this;
        self.cartItem = ko.observableArray([]);
+       self.priceCartSub = ko.observable();
     }
     $( document ).ready(function() {
+        $('#totalAmount').val(0);
         ko.applyBindings(new itemcart);
         
 });

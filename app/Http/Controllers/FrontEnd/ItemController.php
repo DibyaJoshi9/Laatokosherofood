@@ -15,6 +15,12 @@ class ItemController extends BaseController
                     ->get();
         return view('frontend.content.categoryProduct',compact('categories'));
     }
+    public function GetCategoriesItemsFromJs(){
+        $categories = Category::with('childrenRecursive.ItemsRecursive','subCategories','subCategories.items')
+                    ->where(['parent_id'=>null,'status'=>1])
+                    ->get();
+        return compact('categories');
+    }
     public  function AddCartItems(Request $request)
     {
        dd($request);

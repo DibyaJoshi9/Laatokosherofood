@@ -20,6 +20,7 @@ Route::get('/','FrontEnd\HomeController@index')->name('index');
 //     return view('frontend.content.categoryProduct');
 // });
 Route::get('/menu/categoryProduct','FrontEnd\ItemController@GetCategoriesItems');
+Route::get('/menu/categoryProductjs','FrontEnd\ItemController@GetCategoriesItemsFromJs');
 
 
 Route::post('/cart-item', 'FrontEnd\ItemController@AddCartItems');
