@@ -217,7 +217,63 @@
                         </div><!-- ends food-listing-sec -->
                     </div><!-- ends food-sec -->
                 </div>
-
+  <div class="modal fade" id="checkoutmodel" tabindex="-1" aria-labelledby="checkoutmodel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="row g-0">
+        <div class="col-sm-12">
+          <div class="lg-form px-3">
+            <div class="modal-header">
+              <h5 class="modal-title">Checkout Details</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="signupPopCloseId"></button>
+            </div>
+            <div class="modal-body">
+              <div class="border-bottom pb-4 mb-3">
+                <input type="hidden" name="_token" value="e2veVxCMWXHlfE5ihxKVNyfJfDUwDyxJd6crxXM1">                
+                <p class="text-success mb-0" id="quotemsg15"></p>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="mb-3">
+                        <label for="popFirstName" class="form-label require">Full Name:</label>
+                        <input type="text" class="form-control " name="first_name" id="fullname" value="" placeholder="First Name">
+                                                  </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="mb-3">
+                        <label for="popemail" class="form-label require">Email Address:</label>
+                        <input type="email" class="form-control " name="email" id="emailid" value="" placeholder="your@email.com">
+                       </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="mb-3">
+                        <label for="popmobileno" class="form-label require">Mobile No:</label>
+                        <input type="text" class="form-control " name="phone_number" id="phnnumber" value="" placeholder="98xxxxxxxx">
+                    </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="mb-3">
+                        <label for="poppassword" class="form-label require">Address:</label>
+                        <input type="text" class="form-control " name="password" id="address" placeholder="Choose Address">
+                    </div>
+                    </div>
+                    
+                    
+                  </div>
+                  <div class="mb-2">
+                    <!-- <input class="form-check-input" type="checkbox" value="" id="checksignup"> -->
+                    <label class="form-check-label" for="checksignup">
+                      Thank you for choosing us
+                    </label>
+                  </div>
+                  <button type="submit" onclick="submitCheckout()" class="btn btn-custom w-100">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
        <div class="modal fade" id="foodNameModal" tabindex="-1" aria-labelledby="foodNameModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -311,7 +367,7 @@
                                         </p>
                                     </div>
                                     <hr>
-                                    <a href="index.html" class="btn btn-custom w-100 my-2 checkout-status">Proceed to Checkout</a>
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#checkoutmodel" class="btn btn-custom w-100 my-2 checkout-status" >Proceed to Checkout</a>
                                     <!-- <button type="button" class="btn btn-custom w-100 my-2">Proceed to Checkout</button> -->
                                     <!-- <small>Note: In the event that the restaurant price and the price listed below are different, the restaurant/store price will prevail in every case.</small> -->
                                 </div><!--  ends sub-total -->
@@ -450,7 +506,6 @@ function animateJump(hrefVal, mView)
         }, 50);
     }
 }
-
 </script>
 <script>
      function onCartAdd(d){
@@ -527,6 +582,17 @@ function animateJump(hrefVal, mView)
     function deleteCartItem2(a){
        
     }
+    function submitCheckout(){
+        var d = {
+            fullname:  $('#fullname').val(),
+            email:  $('#emailid').val(),
+            address:  $('#address').val(),
+            mobile:  $('#phnnumber').val(),
+            order: JSON.parse(sessionStorage.getItem("cart") || "[]"),
+            deliverycharge: 0
+        };
+
+    }
     </script>
 <script>
     var itemcart = function(){
@@ -539,5 +605,4 @@ function animateJump(hrefVal, mView)
         ko.applyBindings(new itemcart);
         
 });
-
 </script>

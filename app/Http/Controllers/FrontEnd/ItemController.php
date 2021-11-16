@@ -25,4 +25,8 @@ class ItemController extends BaseController
     {
        dd($request);
     }
+    public  function GetCheckout(Request $request)
+    {
+       return view('frontend.content.checkout');
+    }
 }

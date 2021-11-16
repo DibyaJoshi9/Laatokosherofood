@@ -24,6 +24,9 @@ Route::get('/menu/categoryProduct','FrontEnd\ItemController@GetCategoriesItems')
 Route::get('/menu/categoryProductjs','FrontEnd\ItemController@GetCategoriesItemsFromJs');
 Route::get('/menu/categoryProduct', 'FrontEnd\ItemController@GetCategoriesItems');
 
+Route::get('/menu/checkout', 'FrontEnd\ItemController@GetCheckout');
+
+Route::post('/sendmail/send', 'SendEmailController@send');
 
 Route::post('/cart-item', 'FrontEnd\ItemController@AddCartItems');
 Route::group(['prefix' => 'admin'], function () {
