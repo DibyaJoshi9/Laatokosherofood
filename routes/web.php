@@ -17,12 +17,28 @@ Auth::routes();
 
 Route::get('/', 'FrontEnd\HomeController@index')->name('index');
 
+Route::get('clear', function () {
+
+    \Illuminate\Support\Facades\Artisan::call('config:cache');
+
+    \Illuminate\Support\Facades\Artisan::call('view:clear');
+
+    \Illuminate\Support\Facades\Artisan::call('route:clear');
+
+    return 'all cache clear';
+
+});
 
 // Route::get('/menu/categoryProduct', function () {
 //     return view('frontend.content.categoryProduct');
 // });
 Route::get('/menu/categoryProduct', 'FrontEnd\ItemController@GetCategoriesItems')->name('menu.categoryProduct');
+Route::get('/menu/categoryProductjs','FrontEnd\ItemController@GetCategoriesItemsFromJs');
+Route::get('/menu/categoryProduct', 'FrontEnd\ItemController@GetCategoriesItems');
 
+Route::get('/menu/checkout', 'FrontEnd\ItemController@GetCheckout');
+
+Route::post('/sendmail/send', 'SendEmailController@send');
 
 Route::post('/cart-item', 'FrontEnd\ItemController@AddCartItems');
 Route::group(['prefix' => 'admin'], function () {

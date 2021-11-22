@@ -1,4 +1,4 @@
-function addCartItem(pId = null) {
+function addCartItem2(pId = null) {
     if (pId == null) {
         var reqData = {
             "foodNote": $('#modelItemInstruction').val(),
