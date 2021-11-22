@@ -13,6 +13,7 @@
 
 use App\Http\Controllers\Customer\SocialController;
 use App\Http\Daos\PagesDao;
+Auth::routes();
 
 Route::get('/', 'FrontEnd\HomeController@index')->name('index');
 
@@ -20,7 +21,7 @@ Route::get('/', 'FrontEnd\HomeController@index')->name('index');
 // Route::get('/menu/categoryProduct', function () {
 //     return view('frontend.content.categoryProduct');
 // });
-Route::get('/menu/categoryProduct', 'FrontEnd\ItemController@GetCategoriesItems');
+Route::get('/menu/categoryProduct', 'FrontEnd\ItemController@GetCategoriesItems')->name('menu.categoryProduct');
 
 
 Route::post('/cart-item', 'FrontEnd\ItemController@AddCartItems');
@@ -41,7 +42,7 @@ Route::get('auth/facebook/callback', [SocialController::class, 'facebookSignin']
 Route::get('auth/google', 'Customer\GoogleController@redirectToGoogle');
 Route::get('auth/google/callback', 'Customer\GoogleController@handleGoogleCallback');
 
-Route::group(array('middleware' => ['customer']), function () {
+Route::group(array('middleware' => ['auth:customer']), function () {
     Route::post('/foo', function () {
         echo 1;
         return;

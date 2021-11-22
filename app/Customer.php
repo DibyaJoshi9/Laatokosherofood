@@ -10,11 +10,11 @@ class Customer extends Authenticatable
 {
     use Notifiable;
     protected $table='customers';
-    protected $fillable=['first_name','last_name','phone_number','gender','secondary_phone_number','email','status','facebook_id','google_id'];
+    protected $fillable=['first_name','last_name','phone_number','gender','secondary_phone_number','email','status','facebook_id','google_id','password'];
 
-    protected $hidden = [
-        'password',
-    ];
+    // protected $hidden = [
+    //     'password',
+    // ];
 
     public function getSocialAttribute($value)
     {

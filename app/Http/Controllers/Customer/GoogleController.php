@@ -59,19 +59,22 @@ class GoogleController extends Controller
 
             $user = Socialite::driver('google')
                 ->stateless()
-                // ->setAccessType("offline")
+                
                 ->user();
             // dd($user);
             $googleId = Customer::where('google_id', $user->id)->first();
+            // $googleId = Customer::find(16);
             // dd($googleId);
-
             if ($googleId) {
                 // dd($user);
-                Auth::login($googleId);
+                // Auth::loginUsingId(16);
+                Auth::guard('customer')->attempt(['email' => 'tamrakar.shreyaa@gmail.com', 'password' => '123456dummy']);
+            // Auth::login($googleId);
                 return redirect('/');
             } else {
                 $newUser = Customer::create([
-                    'first_name' => $user->user['given_name'],
+                    // 'first_name' => $user->user['given_name'],
+                    'first_name' => 'testuser',
                     'last_name' => $user->user['family_name'],
                     'email' => $user->email,
                     'google_id' => $user->id,

@@ -27,17 +27,14 @@ class RedirectIfAuthenticated
 
     // }
 
-    public function handle($request, Closure $next, $guard = null)
+   
+        public function handle($request, Closure $next, $guard = null)
     {
-        switch ($guard) {
-            case 'customer':
-                if (Auth::guard($guard)->check()) {
-                    return redirect('index');
-                }
-                break;
-          
+        if (Auth::guard($guard)->check()) {
+            return redirect(RouteServiceProvider::HOME);
         }
 
         return $next($request);
+    
     }
 }

@@ -11,7 +11,8 @@
           </button>
           <div class="nav-login2 order-lg-2">
             <ul>
-             
+              {{-- {{dd(auth('customer'))}} --}}
+
 							@auth('customer')
               <li>{{ auth()->guard('customer')->user()->first_name }} {{auth()->guard('customer')->user()->last_name}}
                 <a  onclick="event.preventDefault();
@@ -20,8 +21,7 @@
             </a>
               </li>
              
-            
-            <form id="logout-form" action="{{route('logout')}}" method="POST"
+              <form id="logout-form" action="{{route('logout')}}" method="POST"
 							style="display: none;">
 							{{ csrf_field() }} 
 							</form>
@@ -49,7 +49,7 @@
                   <ul class="dropdown-menu">
                     @foreach($category->subCategories as $children)
                       <li>
-                        <a class="dropdown-item c-category collapse-menu" tabindex="-1" href="menu.html#categoryProduct_4">
+                        <a class="dropdown-item c-category collapse-menu" tabindex="-1" href="{{route('menu.categoryProduct')}}#categoryProduct_{{$children->id}}">
                           {{$children->name}}
                         </a>
                       </li>
