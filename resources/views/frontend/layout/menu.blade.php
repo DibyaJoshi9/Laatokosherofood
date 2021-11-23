@@ -11,10 +11,10 @@
           </button>
           <div class="nav-login2 order-lg-2">
             <ul>
-              {{-- {{dd(auth('customer'))}} --}}
+              {{-- {{dd(auth()->guard('customer'))}} --}}
 
 							@auth('customer')
-              <li>{{ auth()->guard('customer')->user()->first_name }} {{auth()->guard('customer')->user()->last_name}}
+              <li style="color: white;font-size: 18px;font-weight: bold;">{{ auth()->guard('customer')->user()->first_name }} {{auth()->guard('customer')->user()->last_name}}
                 <a  onclick="event.preventDefault();
               document.getElementById('logout-form').submit();" href="#">
               <i class="fas fa-sign-out-alt"></i> Log out

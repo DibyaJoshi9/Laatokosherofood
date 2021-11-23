@@ -34,7 +34,7 @@ Route::get('clear', function () {
 // });
 Route::get('/menu/categoryProduct', 'FrontEnd\ItemController@GetCategoriesItems')->name('menu.categoryProduct');
 Route::get('/menu/categoryProductjs','FrontEnd\ItemController@GetCategoriesItemsFromJs');
-Route::get('/menu/categoryProduct', 'FrontEnd\ItemController@GetCategoriesItems');
+// Route::get('/menu/categoryProduct', 'FrontEnd\ItemController@GetCategoriesItems');
 
 Route::get('/menu/checkout', 'FrontEnd\ItemController@GetCheckout');
 
