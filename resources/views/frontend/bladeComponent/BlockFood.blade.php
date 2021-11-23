@@ -11,7 +11,14 @@
                     <div class="item-product">
                         <div class="product-img">
                             <a href="menu.html#categoryProduct_4" class="stretched-link"></a>
+                            @if(!empty($subCategory->image))
                             <img src="{{asset('storage/'.$subCategory->image)}}" alt="{{$subCategory->name}}" class="img-fluid">
+                           
+                                
+                            @else
+                            <img src="{{asset('storage/'.setting('site.default_image'))}}" alt="{{$subCategory->name}}" class="img-fluid">
+
+                            @endif
                             <div class="listing-meta">
                                 <div class="listing-inner">
                                     <div class="list-option">
