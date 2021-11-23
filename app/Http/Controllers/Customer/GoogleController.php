@@ -30,6 +30,17 @@ class GoogleController extends Controller
 
      */
 
+
+    public function __construct()
+    {
+        $this->middleware('guest:customer');
+    }
+
+    protected function guard()
+    {
+        return Auth::guard('customer');
+    }
+
     public function redirectToGoogle()
 
     {
@@ -59,7 +70,7 @@ class GoogleController extends Controller
 
             $user = Socialite::driver('google')
                 ->stateless()
-                
+
                 ->user();
             // dd($user);
             $googleId = Customer::where('google_id', $user->id)->first();
@@ -68,19 +79,22 @@ class GoogleController extends Controller
             if ($googleId) {
                 // dd($user);
                 // Auth::loginUsingId(16);
-                Auth::guard('customer')->attempt(['email' => 'tamrakar.shreyaa@gmail.com', 'password' => '123456dummy']);
-            // Auth::login($googleId);
+                // Auth::login($googleId);
+                // $this->guard()->attempt(['email' => 'tamrakar.shreyaa@gmail.com', 'password' => '123456dummy']);
+                $this->guard()->attempt(['email' => $googleId->email, 'password' => '123456dummy']);
                 return redirect('/');
             } else {
                 $newUser = Customer::create([
-                    // 'first_name' => $user->user['given_name'],
-                    'first_name' => 'testuser',
+                    'first_name' => $user->user['given_name'],
+                    // 'first_name' => 'testuser',
                     'last_name' => $user->user['family_name'],
                     'email' => $user->email,
                     'google_id' => $user->id,
-                    'password' => encrypt('123456dummy')
+                    'password' => bcrypt('123456dummy')
                 ]);
-                Auth::login($newUser);
+                // Auth::login($newUser);
+                $this->guard()->attempt(['email' => $newUser->email, 'password' => '123456dummy']);
+
                 return redirect('/');
             }
         } catch (Exception $e) {
