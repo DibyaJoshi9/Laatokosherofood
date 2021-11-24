@@ -4,7 +4,7 @@
         <h1>Best Quality and Tasty Food</h1>
         <h2>35 Min Average Delivery Time</h2>
         <div class="banner-search-block">
-            <form action="https://laatokoshero.com/food" method="get" id="searchForm">
+            <form action="/menu/categoryProduct" method="get" id="searchForm">
             <div class="row justify-content-center g-2">
                 <div class="col-sm-5">
                 <input type="text" class="form-control form-control-lg" name="keyword" value="" placeholder="Find Your Food">

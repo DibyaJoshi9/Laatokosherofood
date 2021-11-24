@@ -557,7 +557,6 @@ function animateJump(hrefVal, mView)
             '<div class="slt-lower">' +
             '<div class="slt-lower">' +
             '<span> Quantity :'+ val.Quantity+ '</span>' +
-            '<button type="button" class="btn btn-plain btn-del checkout-status" onclick="javascript:deleteCartItem2(' + val.ProductId + ')"><i class="far fa-trash-alt"></i></button>' +
             '</div>' +
             '</div>' +
             '</li>';
@@ -581,17 +580,6 @@ function animateJump(hrefVal, mView)
            cartReady();
     function deleteCartItem2(a){
        
-    }
-    function submitCheckout(){
-        var d = {
-            fullname:  $('#fullname').val(),
-            email:  $('#emailid').val(),
-            address:  $('#address').val(),
-            mobile:  $('#phnnumber').val(),
-            order: JSON.parse(sessionStorage.getItem("cart") || "[]"),
-            deliverycharge: 0
-        };
-
     }
     </script>
 <script>

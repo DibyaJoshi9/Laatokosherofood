@@ -34,15 +34,15 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto my-2 my-lg-0">
               <li class="nav-item">
-                <a class="nav-link  active " aria-current="page" href="{{route('index')}}">Home</a>
+                <a class="nav-link " aria-current="page" href="{{route('index')}}">Home</a>
               </li>
               <li class="nav-item dropdown">
-                <a class="nav-link " href="menu.html">Menu<i class="fas fa-chevron-down"></i></a>
+                <a class="nav-link " href="#">Menu<i class="fas fa-chevron-down"></i></a>
                 <a href="#" class="drop-icon-bar dropdown-toggle" id="navbarDropdownMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-chevron-down"></i></a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenu">
                   @foreach($categories as $category)
                   <li class="dropdown-submenu">
-                  <a class="a-drop-out dropdown-item p-category collapse-menu" tabindex="-1" href="menu.html#categoryProduct_1">
+                  <a class="a-drop-out dropdown-item p-category collapse-menu" tabindex="-1" href="/menu/categoryProduct#categoryProduct_1">
                     {{$category->name}} @if(count($category->subCategories) >0)<i class="fas fa-chevron-right"></i>@endif
                   </a>
                   @if(count($category->subCategories) > 0)
@@ -61,10 +61,10 @@
                 </ul>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="about-us.html" tabindex="-1" aria-disabled="true">About Us</a>
+                <a class="nav-link " href="/aboutus" tabindex="-1" aria-disabled="true">About Us</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="contact-us.html" tabindex="-1" aria-disabled="true">Contact Us</a>
+                <a class="nav-link " href="/contactus" tabindex="-1" aria-disabled="true">Contact Us</a>
               </li>
               
               {{-- @foreach($items as $menu_item)

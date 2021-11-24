@@ -36,6 +36,10 @@ Route::get('/menu/categoryProduct', 'FrontEnd\ItemController@GetCategoriesItems'
 Route::get('/menu/categoryProductjs','FrontEnd\ItemController@GetCategoriesItemsFromJs');
 // Route::get('/menu/categoryProduct', 'FrontEnd\ItemController@GetCategoriesItems');
 
+Route::get('/aboutus', 'FrontEnd\HomeController@aboutUs')->name('aboutUs');
+
+Route::get('/contactus', 'FrontEnd\HomeController@contactUs')->name('contactUs');
+
 Route::get('/menu/checkout', 'FrontEnd\ItemController@GetCheckout');
 
 Route::post('/sendmail/send', 'SendEmailController@send');

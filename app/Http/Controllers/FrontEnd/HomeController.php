@@ -38,4 +38,12 @@ class HomeController extends BaseController
     public function index(){
         return view('frontend.home');
     }
+
+    public function aboutUs()
+    {
+        return view('frontend.content.aboutUs');
+    }
+    public function contactUs(){
+        return view('frontend.content.contactUs');
+    }
 }
