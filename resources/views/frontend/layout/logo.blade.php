@@ -70,8 +70,6 @@ style="padding: 0px 20px; margin-bottom: 0px; border-bottom: 1px solid #FFC108; 
                 </div> --}}
                 <div class="header-social">
                   <a href="https://www.facebook.com/Laatokoshero" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                  <a href="#"><i class="fab fa-twitter"></i></a>
-                  <a href="https://www.youtube.com/channel/UCeZm-VKD2WJlO7085v0fbdA" target="_blank"><i class="fab fa-youtube"></i></a>
                   <a href="http://instagram.com/laatokoshero" target="_blank"><i class="fab fa-instagram-square"></i></a>
                 </div>
               </div><!-- ends header-right -->

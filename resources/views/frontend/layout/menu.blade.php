@@ -42,7 +42,7 @@
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenu">
                   @foreach($categories as $category)
                   <li class="dropdown-submenu">
-                  <a class="a-drop-out dropdown-item p-category collapse-menu" tabindex="-1" href="/menu/categoryProduct#categoryProduct_1">
+                  <a class="a-drop-out dropdown-item p-category collapse-menu" tabindex="-1" href="/menu/categoryProduct#categoryProduct_{{$category->id}}">
                     {{$category->name}} @if(count($category->subCategories) >0)<i class="fas fa-chevron-right"></i>@endif
                   </a>
                   @if(count($category->subCategories) > 0)

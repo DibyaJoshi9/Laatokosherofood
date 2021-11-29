@@ -10,7 +10,7 @@
                 <div class="item">
                     <div class="item-product">
                         <div class="product-img">
-                            <a href="menu.html#categoryProduct_4" class="stretched-link"></a>
+                            <a href="/menu/categoryProduct#categoryProduct_{{$subCategory->id}}" class="stretched-link"></a>
                             <img src="{{asset('storage/'.$subCategory->image)}}" alt="{{$subCategory->name}}" class="img-fluid">
                             <div class="listing-meta">
                                 <div class="listing-inner">
