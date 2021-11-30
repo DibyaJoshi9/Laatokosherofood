@@ -41,9 +41,9 @@ class HomeController extends BaseController
 
     public function aboutUs()
     {
-        return view('frontend.content.aboutUs');
+        return view('frontend.content.aboutus');
     }
     public function contactUs(){
-        return view('frontend.content.contactUs');
+        return view('frontend.content.contactus');
     }
 }
