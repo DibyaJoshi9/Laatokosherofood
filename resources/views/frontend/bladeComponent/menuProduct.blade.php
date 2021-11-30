@@ -229,6 +229,7 @@
             </div>
             <div class="modal-body">
               <div class="border-bottom pb-4 mb-3">
+                  <form method="POST" action="/sendorder">
                 <input type="hidden" name="_token" value="e2veVxCMWXHlfE5ihxKVNyfJfDUwDyxJd6crxXM1">                
                 <p class="text-success mb-0" id="quotemsg15"></p>
                   <div class="row">
@@ -265,8 +266,9 @@
                       Thank you for choosing us
                     </label>
                   </div>
-                  <button type="submit" onclick="submitCheckout()" class="btn btn-custom w-100">Submit</button>
-              </div>
+                  <button type="submit" class="btn btn-custom w-100">Submit</button>
+</form>
+                </div>
             </div>
           </div>
         </div>
@@ -350,22 +352,7 @@
                                             <span class="visually-hidden">Loading...</span>
                                         </div>
                                     </div>
-                                    <div class="show-amount">
-                                        <p>
-                                            <span class="sub-tit">Sub Total</span>
-                                            <span class="sub-price subTotalId">0</span>
-                                        </p>
-                                        <p>
-                                            <span class="sub-tit">DELIVERY CHARGE
-                                                <!-- <small class="small-delv"><a href="#" data-bs-toggle="modal" data-bs-target="#tbdModal" data-bs-whatever="@mdo">(Show Estimate)</a></small> -->
-                                            </span>
-                                            <span class="sub-price">0</span>
-                                        </p>
-                                        <p>
-                                            <span class="sub-tit"><strong>Grand Total</strong></span>
-                                            <span class="sub-price grandTotalId"><strong>Rs. 0</strong></span>
-                                        </p>
-                                    </div>
+                                  
                                     <hr>
                                     <a href="#" data-bs-toggle="modal" data-bs-target="#checkoutmodel" class="btn btn-custom w-100 my-2 checkout-status" >Proceed to Checkout</a>
                                     <!-- <button type="button" class="btn btn-custom w-100 my-2">Proceed to Checkout</button> -->
@@ -537,14 +524,20 @@ function animateJump(hrefVal, mView)
                 sNote : $('#modelItemInstruction').val()
             };
             var cart = JSON.parse(sessionStorage.getItem("cart") || "[]");
+            for (var i = 0; i < cart.length; i++) {
+            if (cart[i].ProductName == val.ProductName) {
+                alert('This item is already added to the cart')
+                return
+            }
+            }
             cart.push(val);
-
             sessionStorage.setItem("cart", JSON.stringify(cart));
             cartReady();
             $('#foodNameModal').modal('hide');
            }
         function cartReady(){
             var c = JSON.parse(sessionStorage.getItem("cart") || "[]");
+            
             $('.cartListUL').html('');
             $('.subTotalId').text(0);
             for(var i =0;i< c.length;i++){
@@ -555,27 +548,17 @@ function animateJump(hrefVal, mView)
             '<p>Rs. ' + val.ActualRate + '</p>' +
             '</div>' +
             '<div class="slt-lower">' +
-            '<div class="slt-lower">' +
-            '<span> Quantity :'+ val.Quantity+ '</span>' +
+            '<div class="slt-num">' +
+            '<input type="number" value="' + val.Quantity + '">' +
             '</div>' +
+            '<button type="button" class="btn btn-plain btn-del checkout-status" onclick="javascript:deleteCartItem(' + val.CartItemId + ')"><i class="far fa-trash-alt"></i></button>' +
             '</div>' +
             '</li>';
             $('.cartListUL').append(liData);
             $('.cartPanelBox').show();
             $('.cartEmptyBox').hide();
-           
-            $('.subTotalId').text(parseInt($('.subTotalId').text()) + parseInt(val.ActualRate));
-            $('#totalAmount').val(val.addCartItem);
-            $('.grandTotalId').html('<strong>Rs. ' + $('.subTotalId').text() + '</strong>');
-          
           
             }
-            sessionStorage.setItem("total", $('.subTotalId').text());
-            $('.subTotalId').text(parseInt(sessionStorage.getItem("total")));
-            $('#totalAmount').val(parseInt(sessionStorage.getItem("total")));
-            $('.grandTotalId').html('<strong>Rs. ' + sessionStorage.getItem("total") + '</strong>');
-          
-            
            }
            cartReady();
     function deleteCartItem2(a){

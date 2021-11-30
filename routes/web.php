@@ -42,7 +42,7 @@ Route::get('/contactus', 'FrontEnd\HomeController@contactUs')->name('contactUs')
 
 Route::get('/menu/checkout', 'FrontEnd\ItemController@GetCheckout');
 
-Route::post('/sendmail/send', 'SendEmailController@send');
+Route::post('/sendmail/send', 'SendEmailController@sendorder');
 
 Route::post('/cart-item', 'FrontEnd\ItemController@AddCartItems');
 Route::group(['prefix' => 'admin'], function () {
