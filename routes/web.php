@@ -13,6 +13,7 @@
 
 use App\Http\Controllers\Customer\SocialController;
 use App\Http\Daos\PagesDao;
+
 Auth::routes();
 
 Route::get('/', 'FrontEnd\HomeController@index')->name('index');
@@ -26,14 +27,13 @@ Route::get('clear', function () {
     \Illuminate\Support\Facades\Artisan::call('route:clear');
 
     return 'all cache clear';
-
 });
 
 // Route::get('/menu/categoryProduct', function () {
 //     return view('frontend.content.categoryProduct');
 // });
 Route::get('/menu/categoryProduct', 'FrontEnd\ItemController@GetCategoriesItems')->name('menu.categoryProduct');
-Route::get('/menu/categoryProductjs','FrontEnd\ItemController@GetCategoriesItemsFromJs');
+Route::get('/menu/categoryProductjs', 'FrontEnd\ItemController@GetCategoriesItemsFromJs');
 // Route::get('/menu/categoryProduct', 'FrontEnd\ItemController@GetCategoriesItems');
 
 Route::get('/aboutus', 'FrontEnd\HomeController@aboutUs')->name('aboutUs');
@@ -42,7 +42,7 @@ Route::get('/contactus', 'FrontEnd\HomeController@contactUs')->name('contactUs')
 
 Route::get('/menu/checkout', 'FrontEnd\ItemController@GetCheckout');
 
-Route::post('/sendmail/send', 'SendEmailController@sendorder');
+Route::post('/order', 'SendEmailController@sendorder')->name('placeOrder');
 
 Route::post('/cart-item', 'FrontEnd\ItemController@AddCartItems');
 Route::group(['prefix' => 'admin'], function () {

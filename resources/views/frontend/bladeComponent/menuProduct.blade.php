@@ -229,9 +229,10 @@
             </div>
             <div class="modal-body">
               <div class="border-bottom pb-4 mb-3">
-                  <form method="POST" action="/sendorder">
-                <input type="hidden" name="_token" value="e2veVxCMWXHlfE5ihxKVNyfJfDUwDyxJd6crxXM1">                
-                <p class="text-success mb-0" id="quotemsg15"></p>
+                  <form method="POST" id="placeOrderForm">
+                    
+                    {{ csrf_field() }} 
+                    <p class="text-success mb-0" id="quotemsg15"></p>
                   <div class="row">
                     <div class="col-sm-6">
                       <div class="mb-3">
@@ -397,6 +398,23 @@ $(document).ready(function(){
             }
         });
     });
+
+    $('#placeOrderForm').submit(function(e){
+        e.preventDefault();
+        let cart = JSON.parse(sessionStorage.getItem("cart") || "[]");
+        let customerData = {
+            "_token":"{{csrf_token()}}",
+            "first_name":$('#fullname').val(),
+            "email":$("#emailid").val(),
+            "phone_number":$("#phnnumber").val(),
+            "address":$('#address').val(),
+            "cart":cart
+        }
+         
+        $.post( "{{route('placeOrder')}}",customerData, function( response ) {
+            alert(response);
+        });
+    })
 });
 
 $( document ).ready(function() {
