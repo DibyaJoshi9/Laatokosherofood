@@ -404,7 +404,7 @@ $(document).ready(function(){
         let cart = JSON.parse(sessionStorage.getItem("cart") || "[]");
         let customerData = {
             "_token":"{{csrf_token()}}",
-            "first_name":$('#fullname').val(),
+            "full_name":$('#fullname').val(),
             "email":$("#emailid").val(),
             "phone_number":$("#phnnumber").val(),
             "address":$('#address').val(),
@@ -413,6 +413,10 @@ $(document).ready(function(){
          
         $.post( "{{route('placeOrder')}}",customerData, function( response ) {
             alert(response);
+        }).done(function(response){
+
+        }).catch(function(error){
+            alert("Error while placing order")
         });
     })
 });

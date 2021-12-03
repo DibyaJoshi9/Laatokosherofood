@@ -11,21 +11,21 @@ use Illuminate\Support\Facades\Session;
 
 class SendEmailController extends Controller
 {
-    public function sendorder(Request $request)
-    {
-        //  $this->validate($request,[
-        //      'fullname' => 'required',
-        //      'email' => 'required|email',
-        //      'address' => 'required',
-        //      'phnnumber' => 'required',
-        //      'orders' => 'required',
-        //      'deliveryCharge' => 'required'            
-        //    ]);
-        //    $myEmail = 'nicesnippets@gmail.com';
-        //    Mail::to($myEmail)->send(new SendMail($request->all()));
-        /**
-         * 
-         * {
+  public function sendorder(Request $request)
+  {
+    //  $this->validate($request,[
+    //      'fullname' => 'required',
+    //      'email' => 'required|email',
+    //      'address' => 'required',
+    //      'phnnumber' => 'required',
+    //      'orders' => 'required',
+    //      'deliveryCharge' => 'required'            
+    //    ]);
+    //    $myEmail = 'nicesnippets@gmail.com';
+    //    Mail::to($myEmail)->send(new SendMail($request->all()));
+    /**
+     * 
+     * {
   "_token": "VzmjNbdpWCWQAcN0Rf8HMRgiOkqapoNqcSAcP16M",
   "first_name": "Erich",
   "email": "patytyzi@mailinator.com",
@@ -52,32 +52,42 @@ class SendEmailController extends Controller
     }
   ]
 }
-         */
-        $shipping_charge = 100;
-        $total = 0;
-        $carts = $request->cart;
+     */
+    $shipping_charge = 100;
+    $total = 0;
+    $carts = $request->cart;
 
-        $order = new Order();
-        $order->area_id = 0;
-        $order->address_description = $request->address;
-        $order->shipping_charge = $shipping_charge;
-        $order->total_amount = $shipping_charge;
-        $order->contact_number  = $request->phone_number;
-        $order->email = $request->email;
-        $order->save();
+    $order = new Order();
+    $order->area_id = 0;
+    $order->address_description = $request->address;
+    $order->shipping_charge = $shipping_charge;
+    $order->total_amount = $shipping_charge;
+    $order->contact_number  = $request->phone_number;
+    $order->email = $request->email;
+    $order->name = $request->full_name;
+    $order->save();
 
-        foreach ($carts as $cart) {
-            $total += $cart['ActualRate'];
-            $order_detail = new OrderDetail();
-            $order_detail->order_id = $order->id;
-            $order_detail->item_id = $cart["ProductId"];
-            $order_detail->amount = $cart["ActualRate"];
-            $order_detail->description = $cart["sNote"];
-            $order_detail->quantity = $cart["Quantity"];
-            $order_detail->save();
-        }
-        $order->total_amount = $shipping_charge + $total;
-
-        return response(["Success" => true, "Message" => "Order Successfully placed"]);
+    foreach ($carts as $cart) {
+      $total += $cart['ActualRate'];
+      $order_detail = new OrderDetail();
+      $order_detail->order_id = $order->id;
+      $order_detail->item_id = $cart["ProductId"];
+      $order_detail->amount = $cart["ActualRate"];
+      $order_detail->description = $cart["sNote"];
+      $order_detail->quantity = $cart["Quantity"];
+      $order_detail->save();
     }
+    $order->total_amount = $shipping_charge + $total;
+
+    $a = array(
+      'data' => $request->cart
+    );
+    Mail::send('frontend.mail.orderCheckoutSuccess', $a, function ($message) use ($order) {
+      $message->from(env('MAIL_USERNAME', "joshidibya77@gmail.com"));
+      $message->to($order->email, $order->full_name);
+      $message->subject('Laatokosherofood Order Confirmation');
+    });
+
+    return response(["Success" => true, "Message" => "Order Successfully placed"]);
+  }
 }
