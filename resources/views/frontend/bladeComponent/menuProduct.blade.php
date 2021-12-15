@@ -412,9 +412,13 @@ $(document).ready(function(){
         }
          
         $.post( "{{route('placeOrder')}}",customerData, function( response ) {
-            alert(response);
+            alert(response.Message);
         }).done(function(response){
-
+            $('#fullname').val(''),
+            $("#emailid").val(''),
+            $("#phnnumber").val(''),
+            $('#address').val(''),
+            sessionStorage.setItem("cart","")
         }).catch(function(error){
             alert("Error while placing order")
         });

@@ -82,9 +82,21 @@ class SendEmailController extends Controller
     $a = array(
       'data' => $request->cart
     );
+    $a = array(
+      'data' => $request->cart,
+      'email' => $request->email,
+      'phone_number' => $request->phone_number,
+      'full_name' => $request->full_name,
+      'address' => $request->address,
+    );
     Mail::send('frontend.mail.orderCheckoutSuccess', $a, function ($message) use ($order) {
-      $message->from(env('MAIL_USERNAME', "joshidibya77@gmail.com"));
+      $message->from(env('MAIL_USERNAME', "laatokosherofood@gmail.com"));
       $message->to($order->email, $order->full_name);
+      $message->subject('Laatokosherofood Order Confirmation');
+    });
+  Mail::send('frontend.mail.laatokosheroordersucess', $a, function ($message) use ($order) {
+      $message->from(env('MAIL_USERNAME', "laatokosherofood@gmail.com"));
+      $message->to("laatokoshero@gmail.com","Food Order By Customer");
       $message->subject('Laatokosherofood Order Confirmation');
     });
 
